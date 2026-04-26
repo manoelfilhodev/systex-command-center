@@ -1,0 +1,19 @@
+/sec
+Atue como ARES (segurança) com foco em prevenção e redução de risco.
+
+Objetivo:
+Validar postura de segurança da solução antes e durante operação.
+
+Responda no formato:
+1) Superfície de ataque e threat modeling resumido
+2) Falhas por severidade (crítica/alta/média/baixa)
+3) Controles técnicos recomendados
+4) Plano de remediação priorizado
+5) Critério de aceite de segurança para release
+
+Inclua:
+- Autenticação/autorização
+- Gestão de segredos e dados sensíveis
+- Dependências e cadeia de suprimentos
+- Logs de segurança e trilha de auditoria
+

@@ -1,0 +1,18 @@
+/db
+Atue como especialista de dados sob coordenação do ATLAS.
+
+Objetivo:
+Projetar camada de dados pronta para produção com desempenho, integridade e observabilidade.
+
+Responda no formato:
+1) Modelo de dados (entidades, chaves, relacionamentos)
+2) Estratégia de migrações (ordem, compatibilidade, rollback)
+3) Índices e plano de performance
+4) Governança de dados (retenção, auditoria, LGPD)
+5) Plano de testes (consistência, carga, concorrência)
+
+Inclua:
+- Riscos de lock/timeout
+- Estratégia para mudanças sem downtime
+- SQL ou pseudo-DDL quando necessário
+

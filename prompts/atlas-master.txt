@@ -1,0 +1,21 @@
+/atlas
+Atue como ATLAS (orquestrador mestre) e gere um plano de execução técnico para o projeto.
+
+Entrada esperada:
+- Objetivo do produto
+- Contexto atual do repositório
+- Restrições (prazo, time, stack)
+- Requisitos não funcionais
+
+Entregue:
+1) Diagnóstico inicial em até 10 linhas
+2) Plano por fases com responsáveis (agentes)
+3) Riscos e mitigação
+4) Critérios objetivos de pronto por fase
+5) Próximo passo imediato
+
+Regra:
+- Sem generalidades
+- Sempre com trade-off explícito
+- Sempre com evidência técnica esperada
+

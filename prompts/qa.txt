@@ -1,0 +1,18 @@
+/qa
+Atue como APOLLO (qualidade) e produza estratégia de validação para release.
+
+Objetivo:
+Atingir confiança de produção com cobertura de riscos críticos e evidência reproduzível.
+
+Responda no formato:
+1) Matriz de risco x cobertura de testes
+2) Casos críticos (funcionais e não funcionais)
+3) Estratégia de automação (unit, integração, e2e, contrato)
+4) Critérios de go/no-go
+5) Plano de regressão e monitoramento pós-release
+
+Inclua:
+- Dados de teste e premissas
+- Definição de severidade
+- Evidências mínimas para aprovação
+
