@@ -1,58 +1,298 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Systex Command Center
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Painel executivo principal da **SYSTEX Sistemas Inteligentes**, projetado para centralizar a gestão comercial, financeira, operacional e estratégica da empresa.
 
-## About Laravel
+O objetivo do projeto é consolidar em uma única plataforma o controle de:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Clientes
+- Leads
+- CRM comercial
+- Propostas
+- Contratos
+- Financeiro
+- MRR (Monthly Recurring Revenue)
+- Projetos
+- Implantação
+- Suporte
+- Indicadores executivos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Filosofia do Projeto
 
-## Learning Laravel
+Este sistema nasce seguindo o padrão oficial do **Systex AI Framework**, onde toda decisão deve respeitar:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Estratégia
+2. Estrutura
+3. Segurança
+4. Escalabilidade
+5. Execução
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Nunca o contrário.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+A base do projeto não aceita improviso estrutural.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+# Agentes Oficiais
 
-```bash
-composer require laravel/boost --dev
+## 👑 ATLAS
 
-php artisan boost:install
+Orquestração geral, prioridade, governança e roadmap.
+
+## 🧠 ATHENA
+
+Regras de negócio e aderência operacional.
+
+## 🏗️ PROMETEU
+
+Arquitetura Laravel, escalabilidade e estrutura enterprise.
+
+## 🗄️ GAIA
+
+Banco de dados, modelagem e relacionamentos.
+
+## ⚙️ VULCAN
+
+Estrutura base, setup e fundação técnica.
+
+## 🔴 ARES
+
+Backend, controllers, services e APIs.
+
+## 🎨 APOLLO
+
+Frontend, UX, layout premium e padrão visual Systex.
+
+## 📱 HERMES
+
+Visão futura do app Flutter e integração mobile.
+
+## 🧪 ORION
+
+Qualidade, testes e mitigação de risco.
+
+## 🛡️ HADES
+
+Segurança, autenticação e permissões.
+
+## 💰 CRONOS
+
+Financeiro, contratos, indicadores e MRR.
+
+## 📈 MERCURIUS
+
+CRM, vendas, propostas e pipeline comercial.
+
+## 🎯 AURORA
+
+Branding, posicionamento e percepção de valor.
+
+## ⚖️ THEMIS
+
+Jurídico, contratos, SLA e proteção operacional.
+
+---
+
+# Stack Oficial
+
+- Laravel 13
+- PHP 8+
+- MySQL
+- Blade
+- Tailwind CSS
+- Vite
+- Ubuntu / WSL
+- VS Code
+- futura API para Flutter
+
+Tema visual:
+
+- Preto
+- Cinza
+- Vermelho apenas em detalhes
+
+Visual premium SaaS / enterprise / clean / tecnológico.
+
+---
+
+# Estrutura Inicial
+
+## Banco principal
+
+```txt
+systex_command_center
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Tabelas iniciais
 
-## Contributing
+```txt
+_tb_clientes
+_tb_leads
+_tb_propostas
+_tb_proposta_itens
+_tb_servicos
+_tb_contratos
+_tb_financeiro
+_tb_mrr_historico
+_tb_projetos
+_tb_implantacoes
+_tb_implantacao_etapas
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+# Fluxo Comercial Principal
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```txt
+Lead
+→ Oportunidade
+→ Diagnóstico
+→ Proposta
+→ Negociação
+→ Fechamento
+→ Contrato
+→ Implantação
+→ Cliente Ativo
+→ Receita Recorrente
+→ Expansão
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Serviços Core da SYSTEX
 
-## License
+## Produtos
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- WMS
+- ERP
+- CRM
+
+## Serviços
+
+- Desenvolvimento sob demanda
+- Implantação
+- Consultoria
+- Suporte
+- Integrações
+- Customizações
+
+## Receita Recorrente
+
+- Mensalidade
+- SLA
+- Suporte mensal
+- Sustentação
+- Hospedagem
+- Evolução contínua
+
+---
+
+# Setup Local
+
+## Instalação
+
+```bash
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+```
+
+## Banco
+
+Configurar `.env`
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=systex_command_center
+DB_USERNAME=systex_user
+DB_PASSWORD=******
+```
+
+## Migrations
+
+```bash
+php artisan migrate
+```
+
+## Frontend
+
+```bash
+npm run dev
+```
+
+## Backend
+
+```bash
+php artisan serve
+```
+
+---
+
+# Roadmap
+
+## Fase 1 — Fundação
+
+- Ambiente Laravel
+- Banco MySQL
+- Dashboard inicial
+- Layout base Systex
+- Estrutura de migrations
+
+## Fase 2 — Comercial
+
+- Leads
+- CRM
+- Clientes
+- Propostas
+- Contratos
+
+## Fase 3 — Financeiro
+
+- Receitas
+- Despesas
+- MRR
+- Indicadores
+- Dashboard executivo
+
+## Fase 4 — Operação
+
+- Projetos
+- Implantação
+- Suporte
+- SLA
+- Go Live
+
+## Fase 5 — Expansão
+
+- API Flutter
+- Portal do Cliente
+- Automações
+- IA operacional
+
+---
+
+# Governança
+
+Nenhuma implementação deve avançar sem:
+
+- validação arquitetural
+- controle de risco
+- padrão de nomenclatura
+- rastreabilidade
+- possibilidade real de escala
+
+O projeto deve nascer pronto para crescer.
+
+---
+
+# SYSTEX
+
+**SYSTEX Sistemas Inteligentes**
+
+Tecnologia aplicada à operação real.
+
+Soluções robustas para logística, gestão, automação e performance empresarial.
