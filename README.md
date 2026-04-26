@@ -1,234 +1,58 @@
-# 🧠 Systex AI Engineering Framework
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## O Sistema Operacional de Engenharia da Systex
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-Framework oficial de engenharia orientado por IA para desenvolvimento de software com padronização, previsibilidade, segurança e escalabilidade.
+## About Laravel
 
-Este repositório não é apenas uma coleção de prompts.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-Ele define como a Systex constrói sistemas.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Todo novo projeto obrigatoriamente inicia por este framework.
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
----
+## Learning Laravel
 
-# 🎯 Objetivo
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-Garantir que todos os projetos da Systex sigam um padrão consistente de:
+In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-* Arquitetura
-* Qualidade
-* Segurança
-* Organização
-* Escalabilidade
-* Governança técnica
-* Documentação viva
-* Execução orientada por decisão
+You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
 
-Aqui, código não é o início.
+## Agentic Development
 
-# Código é consequência.
+Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
 
----
+```bash
+composer require laravel/boost --dev
 
-# 🏛 Filosofia
-
-Você não está programando sozinho.
-
-Você está orquestrando um time de engenharia.
-
-A IA não substitui o decisor.
-
-Ela acelera execução, reduz retrabalho e aumenta qualidade.
-
-A decisão continua humana.
-
-A responsabilidade continua humana.
-
-A entrega continua profissional.
-
----
-
-# ⚠️ Regra Principal
-
-## Nenhum projeto começa pelo código.
-
-Todo projeto começa por:
-
-* entendimento
-* regra de negócio
-* arquitetura
-* modelagem de dados
-* contratos de API
-* documentação
-
-Se isso não existe:
-
-# o projeto ainda não começou.
-
----
-
-# 🧩 Estrutura do Framework
-
-```text
-agents/      → definição dos agentes
-atlas/       → orquestração principal
-prompts/     → comandos prontos
-templates/   → templates de handoff e fluxo
-docs/        → documentação gerada por projeto
-flows/       → fluxos oficiais por stack
-standards/   → regras técnicas obrigatórias
+php artisan boost:install
 ```
 
----
+Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
-# 🧠 Agentes Oficiais da Systex
+## Contributing
 
-| Agente       | Função                            |
-| ------------ | --------------------------------- |
-| 👑 ATLAS     | Orquestração e direção do projeto |
-| 🧠 ATHENA    | Regras de negócio                 |
-| 🏗️ PROMETEU | Arquitetura                       |
-| 🗄️ GAIA     | Banco de dados                    |
-| ⚙️ VULCAN    | Estrutura base                    |
-| 🔴 ARES      | Backend / API                     |
-| 🎨 APOLLO    | Frontend / Admin                  |
-| 📱 HERMES    | Mobile / Flutter                  |
-| 🧪 ORION     | Testes                            |
-| 🛡️ HADES    | Segurança                         |
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
----
+## Code of Conduct
 
-# 🚀 Fluxo Oficial de Inicialização de Projetos
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Este fluxo é obrigatório
+## Security Vulnerabilities
 
-Todo novo projeto deve seguir exatamente esta ordem:
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-```text
-1. ATLAS   → Orquestração
-2. ATHENA  → Regras de negócio
-3. PROMETEU → Arquitetura
-4. GAIA    → Banco de dados
-5. VULCAN  → Estrutura base
-6. PROMETEU → Contratos e API
-7. ARES / APOLLO / HERMES → Início da execução
-8. ORION / HADES → Validação final
-```
+## License
 
-Quebrar essa ordem gera:
-
-* retrabalho
-* dívida técnica
-* perda de previsibilidade
-* risco operacional
-* custo invisível
-
----
-
-# 🔒 Non-Negotiables
-
-## Regras que não são opcionais
-
-### ❌ Não iniciar código antes de:
-
-* regras de negócio
-* arquitetura
-* banco de dados
-* contratos de API
-
----
-
-### ❌ Não criar tabelas sem validação da GAIA
-
-Banco de dados não nasce improvisado.
-
----
-
-### ❌ Não abrir endpoints sem contrato definido
-
-API sem contrato gera caos.
-
----
-
-### ❌ Não entregar sem ORION + HADES
-
-Sem teste e segurança, não existe entrega.
-
----
-
-### ❌ Não considerar projeto iniciado sem documentação
-
-Se não está documentado:
-
-# ainda não existe.
-
----
-
-# 🧠 Como Utilizar
-
-## Etapa 1
-
-Criar novo projeto utilizando este repositório como base.
-
----
-
-## Etapa 2
-
-Abrir no ambiente de execução (Codex / Prometeu / ambiente local).
-
----
-
-## Etapa 3
-
-Executar os agentes na ordem oficial.
-
----
-
-## Etapa 4
-
-Gerar documentação obrigatória.
-
----
-
-## Etapa 5
-
-Somente após isso iniciar desenvolvimento.
-
----
-
-# 📈 Benefícios Reais
-
-* redução drástica de retrabalho
-* clareza estrutural
-* previsibilidade de entrega
-* padronização entre projetos
-* escalabilidade operacional
-* onboarding mais rápido
-* uso eficiente de IA
-* menor dependência de improviso
-* qualidade empresarial
-
----
-
-# 🏁 Posicionamento
-
-A Systex não vende apenas software.
-
-A Systex entrega engenharia.
-
-Não construímos sistemas no improviso.
-
-Construímos com método.
-
-Construímos com estrutura.
-
-Construímos com responsabilidade.
-
----
-
-# Assinatura
-
-## Systex Sistemas Inteligentes
-
-### Engenharia com método. Tecnologia com direção.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
