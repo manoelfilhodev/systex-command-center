@@ -1,6 +1,7 @@
 @extends('layouts.systex')
 
 @section('content')
+<div class="dashboard-page" data-dashboard-count-root>
     <x-topbar
         title="Command Center"
         subtitle="Visão executiva da SYSTEX Sistemas Inteligentes"
@@ -123,4 +124,91 @@
             </div>
         </div>
     </section>
+</div>
+
+<script>
+    (() => {
+        const root = document.querySelector('[data-dashboard-count-root]');
+
+        if (!root) {
+            return;
+        }
+
+        const counters = [...root.querySelectorAll('.card-value, [data-count-up]')];
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const duration = 950;
+
+        const parseValue = (text) => {
+            const raw = text.trim();
+            const prefix = raw.startsWith('R$') ? 'R$ ' : '';
+            const suffix = raw.endsWith('%') ? '%' : '';
+            const numericText = raw
+                .replace('R$', '')
+                .replace('%', '')
+                .replace(/\s/g, '');
+
+            if (!/^-?[\d.,]+$/.test(numericText)) {
+                return null;
+            }
+
+            const hasDecimalComma = numericText.includes(',');
+            const normalized = hasDecimalComma
+                ? numericText.replace(/\./g, '').replace(',', '.')
+                : numericText.replace(/,/g, '');
+            const value = Number.parseFloat(normalized);
+
+            if (!Number.isFinite(value)) {
+                return null;
+            }
+
+            const decimals = prefix ? 2 : (hasDecimalComma ? numericText.split(',')[1].length : 0);
+
+            return { value, prefix, suffix, decimals };
+        };
+
+        const formatValue = ({ value, prefix, suffix, decimals }) => {
+            const formatted = value.toLocaleString('pt-BR', {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+            });
+
+            return `${prefix}${formatted}${suffix}`;
+        };
+
+        counters.forEach((counter) => {
+            const parsed = parseValue(counter.textContent);
+
+            if (!parsed) {
+                return;
+            }
+
+            if (reduceMotion) {
+                counter.textContent = formatValue(parsed);
+                return;
+            }
+
+            const target = parsed.value;
+            const start = performance.now();
+
+            counter.textContent = formatValue({ ...parsed, value: 0 });
+
+            const tick = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = target * eased;
+
+                counter.textContent = formatValue({ ...parsed, value: current });
+
+                if (progress < 1) {
+                    requestAnimationFrame(tick);
+                    return;
+                }
+
+                counter.textContent = formatValue(parsed);
+            };
+
+            requestAnimationFrame(tick);
+        });
+    })();
+</script>
 @endsection
