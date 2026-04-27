@@ -52,6 +52,19 @@
                     <input type="date" name="proximo_contato" value="{{ old('proximo_contato') }}">
                 </div>
 
+                <div class="form-group">
+                    <label>Status</label>
+                    <select name="status">
+                        <option value="novo" @selected(old('status', 'novo') === 'novo')>Novo</option>
+                        <option value="contato_feito" @selected(old('status') === 'contato_feito')>Contato feito</option>
+                        <option value="diagnostico" @selected(old('status') === 'diagnostico')>Diagnóstico</option>
+                        <option value="proposta_enviada" @selected(old('status') === 'proposta_enviada')>Proposta enviada</option>
+                        <option value="negociacao" @selected(old('status') === 'negociacao')>Negociação</option>
+                        <option value="convertido" @selected(old('status') === 'convertido')>Convertido</option>
+                        <option value="perdido" @selected(old('status') === 'perdido')>Perdido</option>
+                    </select>
+                </div>
+
                 <div class="form-group full">
                     <label>Observações</label>
                     <textarea name="observacoes" rows="5">{{ old('observacoes') }}</textarea>

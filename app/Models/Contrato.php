@@ -55,13 +55,18 @@ class Contrato extends Model
         return $this->hasMany(MrrHistorico::class, 'contrato_id');
     }
 
-public function implantacao()
-{
-    return $this->hasOne(Implantacao::class, 'contrato_id');
-}
+    public function implantacao()
+    {
+        return $this->hasOne(Implantacao::class, 'contrato_id');
+    }
 
-public function aditivos()
-{
-    return $this->hasMany(ContratoAditivo::class, 'contrato_id');
-}
+    public function aditivos()
+    {
+        return $this->hasMany(ContratoAditivo::class, 'contrato_id');
+    }
+
+    public function suporteChamados()
+    {
+        return $this->hasMany(SuporteChamado::class, 'contrato_id');
+    }
 }

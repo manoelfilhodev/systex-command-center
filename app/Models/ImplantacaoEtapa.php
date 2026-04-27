@@ -18,6 +18,12 @@ class ImplantacaoEtapa extends Model
         'observacoes',
     ];
 
+    protected $casts = [
+        'ordem' => 'integer',
+        'data_inicio' => 'date',
+        'data_fim' => 'date',
+    ];
+
     public function implantacao()
     {
         return $this->belongsTo(Implantacao::class, 'implantacao_id');

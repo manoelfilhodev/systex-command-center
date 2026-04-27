@@ -132,6 +132,19 @@
             font-size: 14px;
         }
 
+        .menu-disabled {
+            color: var(--muted-2);
+            padding: 12px 13px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            border: 1px solid transparent;
+            font-size: 14px;
+            opacity: 0.62;
+            cursor: not-allowed;
+        }
+
         .menu a:hover {
             background: rgba(255,255,255,0.045);
             color: white;
@@ -314,6 +327,36 @@
             background: var(--surface);
         }
 
+        .empty-state {
+            display: grid;
+            place-items: center;
+            gap: 12px;
+            text-align: center;
+            padding: 42px 20px;
+            color: var(--muted);
+        }
+
+        .empty-state strong {
+            color: #f4f4f5;
+            font-size: 18px;
+        }
+
+        .empty-state p {
+            max-width: 460px;
+            line-height: 1.6;
+        }
+
+        .empty-state-mark {
+            border: 1px solid var(--accent-border);
+            background: var(--accent-soft);
+            color: #fecaca;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -372,6 +415,71 @@
             color: #fde68a;
             background: rgba(245,158,11,0.12);
             border-color: rgba(245,158,11,0.28);
+        }
+
+        .pipeline-board {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(260px, 1fr));
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+
+        .pipeline-column {
+            min-height: 420px;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 14px;
+        }
+
+        .pipeline-column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .pipeline-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #f4f4f5;
+        }
+
+        .pipeline-meta {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .pipeline-lead {
+            display: block;
+            text-decoration: none;
+            background: #0b0b0c;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 13px;
+            margin-bottom: 10px;
+            transition: 0.18s ease;
+        }
+
+        .pipeline-lead:hover {
+            border-color: var(--accent-border);
+            transform: translateY(-1px);
+        }
+
+        .pipeline-lead strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .pipeline-lead span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
         }
 
         .form-grid {
@@ -470,6 +578,15 @@
             border-color: rgba(239,68,68,0.28);
         }
 
+        .btn-link {
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            padding: 0;
+        }
+
         .alert-error,
         .alert-success {
             padding: 16px;
@@ -524,7 +641,9 @@
 
 <div class="app">
 
-    <x-sidebar />
+    @auth
+        <x-sidebar />
+    @endauth
 
     <main class="content">
         @yield('content')

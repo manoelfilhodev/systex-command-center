@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ServicosSeeder::class,
+            SystexDemoSeeder::class,
         ]);
     }
 }

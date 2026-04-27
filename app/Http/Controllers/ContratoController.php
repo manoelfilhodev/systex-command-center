@@ -5,27 +5,43 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Contrato;
 use App\Models\Proposta;
+use App\Services\AuditoriaService;
+use App\Services\ContratoService;
+use App\Services\MrrService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\MrrHistorico;
 
 class ContratoController extends Controller
 {
+    public function __construct(
+        private readonly ContratoService $contratoService,
+        private readonly MrrService $mrrService,
+        private readonly AuditoriaService $auditoriaService
+    ) {}
+
     public function index()
     {
         $contratos = Contrato::with(['cliente', 'proposta'])
             ->latest()
             ->paginate(10);
 
-        return view('contratos.index', compact('contratos'));
+        return view('contratos.index', [
+            'contratos' => $contratos,
+            'summary' => $this->contratoService->summary(),
+            'vencendo' => $this->contratoService->expiringContracts(),
+        ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $clientes = Cliente::orderBy('nome_fantasia')->get();
         $propostas = Proposta::orderBy('titulo')->get();
+        $propostaSelecionada = $request->get('proposta_id');
+        $propostaBase = $propostaSelecionada
+            ? Proposta::find($propostaSelecionada)
+            : null;
 
-        return view('contratos.create', compact('clientes', 'propostas'));
+        return view('contratos.create', compact('clientes', 'propostas', 'propostaSelecionada', 'propostaBase'));
     }
 
     public function store(Request $request)
@@ -57,23 +73,11 @@ class ContratoController extends Controller
             'observacoes' => $data['observacoes'] ?? null,
         ]);
 
-        if (
-            $contrato->status === 'ativo' &&
-            $contrato->valor_mensal > 0
-        ) {
-            MrrHistorico::updateOrCreate(
-                [
-                    'cliente_id' => $contrato->cliente_id,
-                    'contrato_id' => $contrato->id,
-                    'ano' => now()->year,
-                    'mes' => now()->month,
-                ],
-                [
-                    'valor_mrr' => $contrato->valor_mensal,
-                    'status' => 'confirmado',
-                ]
-            );
-        }
+        $this->mrrService->syncContratoForCurrentMonth($contrato);
+        $this->auditoriaService->registrar('contratos', 'criado', $contrato, $contrato->numero, [
+            'status' => $contrato->status,
+            'valor_mensal' => $contrato->valor_mensal,
+        ]);
 
         return redirect()
             ->route('contratos.index')
@@ -123,6 +127,12 @@ class ContratoController extends Controller
             'observacoes' => $data['observacoes'] ?? null,
         ]);
 
+        $this->mrrService->syncContratoForCurrentMonth($contrato->refresh());
+        $this->auditoriaService->registrar('contratos', 'atualizado', $contrato, $contrato->numero, [
+            'status' => $contrato->status,
+            'valor_mensal' => $contrato->valor_mensal,
+        ]);
+
         return redirect()
             ->route('contratos.index')
             ->with('success', 'Contrato atualizado com sucesso.');
@@ -140,7 +150,7 @@ class ContratoController extends Controller
     private function gerarNumeroContrato(): string
     {
         do {
-            $numero = 'CONT-' . now()->format('Ymd') . '-' . strtoupper(Str::random(5));
+            $numero = 'CONT-'.now()->format('Ymd').'-'.strtoupper(Str::random(5));
         } while (Contrato::where('numero', $numero)->exists());
 
         return $numero;

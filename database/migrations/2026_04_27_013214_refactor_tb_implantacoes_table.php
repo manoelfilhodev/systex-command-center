@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -27,32 +27,36 @@ return new class extends Migration
                 ->onDelete('cascade');
         });
 
-        DB::statement("
-            ALTER TABLE _tb_implantacoes
-            MODIFY COLUMN status ENUM(
-                'pendente',
-                'em_andamento',
-                'homologacao',
-                'go_live',
-                'concluida',
-                'pausada',
-                'cancelada'
-            ) NOT NULL DEFAULT 'pendente'
-        ");
+        if (DB::getDriverName() !== 'sqlite') {
+            DB::statement("
+                ALTER TABLE _tb_implantacoes
+                MODIFY COLUMN status ENUM(
+                    'pendente',
+                    'em_andamento',
+                    'homologacao',
+                    'go_live',
+                    'concluida',
+                    'pausada',
+                    'cancelada'
+                ) NOT NULL DEFAULT 'pendente'
+            ");
+        }
     }
 
     public function down(): void
     {
-        DB::statement("
-            ALTER TABLE _tb_implantacoes
-            MODIFY COLUMN status ENUM(
-                'nao_iniciada',
-                'em_andamento',
-                'em_risco',
-                'concluida',
-                'cancelada'
-            ) NOT NULL DEFAULT 'nao_iniciada'
-        ");
+        if (DB::getDriverName() !== 'sqlite') {
+            DB::statement("
+                ALTER TABLE _tb_implantacoes
+                MODIFY COLUMN status ENUM(
+                    'nao_iniciada',
+                    'em_andamento',
+                    'em_risco',
+                    'concluida',
+                    'cancelada'
+                ) NOT NULL DEFAULT 'nao_iniciada'
+            ");
+        }
 
         Schema::table('_tb_implantacoes', function (Blueprint $table) {
             $table->dropForeign(['contrato_id']);

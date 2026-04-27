@@ -4,24 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\Contrato;
 use App\Models\Implantacao;
+use App\Services\AuditoriaService;
+use App\Services\ImplantacaoService;
 use Illuminate\Http\Request;
 
 class ImplantacaoController extends Controller
 {
+    public function __construct(
+        private readonly ImplantacaoService $implantacaoService,
+        private readonly AuditoriaService $auditoriaService
+    ) {}
+
     public function index()
     {
         $implantacoes = Implantacao::with(['contrato.cliente', 'etapas', 'aditivos'])
             ->latest()
             ->get();
 
-        return view('implantacoes.index', compact('implantacoes'));
+        $progressos = $implantacoes
+            ->mapWithKeys(fn (Implantacao $implantacao) => [
+                $implantacao->id => $this->implantacaoService->progressFor($implantacao),
+            ]);
+
+        return view('implantacoes.index', [
+            'implantacoes' => $implantacoes,
+            'summary' => $this->implantacaoService->summary(),
+            'emRisco' => $this->implantacaoService->riskList(),
+            'progressos' => $progressos,
+        ]);
     }
 
     public function show(Implantacao $implantacao)
     {
         $implantacao->load(['contrato.cliente', 'etapas', 'aditivos']);
+        $progresso = $this->implantacaoService->progressFor($implantacao);
 
-        return view('implantacoes.show', compact('implantacao'));
+        return view('implantacoes.show', compact('implantacao', 'progresso'));
     }
 
     public function create()
@@ -45,7 +63,10 @@ class ImplantacaoController extends Controller
             'observacoes' => ['nullable', 'string'],
         ]);
 
-        Implantacao::create($data);
+        $implantacao = Implantacao::create($data);
+        $this->auditoriaService->registrar('implantacoes', 'criada', $implantacao, 'Implantação #'.$implantacao->id, [
+            'status' => $implantacao->status,
+        ]);
 
         return redirect()
             ->route('implantacoes.index')
@@ -68,7 +89,7 @@ class ImplantacaoController extends Controller
     public function update(Request $request, Implantacao $implantacao)
     {
         $data = $request->validate([
-            'contrato_id' => ['required', 'exists:_tb_contratos,id', 'unique:_tb_implantacoes,contrato_id,' . $implantacao->id],
+            'contrato_id' => ['required', 'exists:_tb_contratos,id', 'unique:_tb_implantacoes,contrato_id,'.$implantacao->id],
             'status' => ['required', 'in:pendente,em_andamento,homologacao,go_live,concluida,pausada,cancelada'],
             'data_inicio' => ['nullable', 'date'],
             'data_go_live' => ['nullable', 'date', 'after_or_equal:data_inicio'],
@@ -77,6 +98,9 @@ class ImplantacaoController extends Controller
         ]);
 
         $implantacao->update($data);
+        $this->auditoriaService->registrar('implantacoes', 'atualizada', $implantacao, 'Implantação #'.$implantacao->id, [
+            'status' => $implantacao->status,
+        ]);
 
         return redirect()
             ->route('implantacoes.show', $implantacao)

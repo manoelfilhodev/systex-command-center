@@ -39,6 +39,6 @@ class Projeto extends Model
 
     public function implantacao()
     {
-        return $this->hasOne(Implantacao::class, 'projeto_id');
+        return $this->hasOne(Implantacao::class, 'contrato_id', 'contrato_id');
     }
 }

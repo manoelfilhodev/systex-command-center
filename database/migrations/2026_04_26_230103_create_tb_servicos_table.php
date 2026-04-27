@@ -22,7 +22,7 @@ return new class extends Migration
                 'implantacao',
                 'suporte',
                 'consultoria',
-                'integracao'
+                'integracao',
             ]);
             $table->enum('tipo_receita', ['unica', 'recorrente', 'hibrida'])->default('hibrida');
             $table->decimal('valor_base', 12, 2)->default(0);
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_servicos');
+        Schema::dropIfExists('_tb_servicos');
     }
 };

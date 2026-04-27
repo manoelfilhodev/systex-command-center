@@ -30,6 +30,13 @@
         <div class="card-title">Status</div>
         <div class="card-value">{{ ucfirst($contrato->status) }}</div>
     </div>
+
+    <div class="card">
+        <div class="card-title">Vigência</div>
+        <div class="card-value">
+            {{ $contrato->data_fim ? $contrato->data_fim->diffForHumans() : 'Indeterminada' }}
+        </div>
+    </div>
 </div>
 
 <div style="height: 20px;"></div>

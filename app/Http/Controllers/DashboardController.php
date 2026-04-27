@@ -14,6 +14,9 @@ class DashboardController extends Controller
     {
         return view('dashboard.index', [
             'cards' => $this->dashboardService->getExecutiveCards(),
+            'health' => $this->dashboardService->getExecutiveHealth(),
+            'alerts' => $this->dashboardService->getExecutiveAlerts(),
+            'revenue' => $this->dashboardService->getRevenueSnapshot(),
         ]);
     }
 }

@@ -38,7 +38,7 @@
                 <select name="cliente_id" required>
                     <option value="">Selecione</option>
                     @foreach($clientes as $cliente)
-                        <option value="{{ $cliente->id }}" {{ old('cliente_id') == $cliente->id ? 'selected' : '' }}>
+                        <option value="{{ $cliente->id }}" {{ old('cliente_id', $propostaBase->cliente_id ?? null) == $cliente->id ? 'selected' : '' }}>
                             {{ $cliente->nome_fantasia ?? $cliente->razao_social }}
                         </option>
                     @endforeach
@@ -50,7 +50,7 @@
                 <select name="proposta_id">
                     <option value="">Sem proposta vinculada</option>
                     @foreach($propostas as $proposta)
-                        <option value="{{ $proposta->id }}" {{ old('proposta_id') == $proposta->id ? 'selected' : '' }}>
+                        <option value="{{ $proposta->id }}" {{ old('proposta_id', $propostaSelecionada ?? null) == $proposta->id ? 'selected' : '' }}>
                             {{ $proposta->numero }} — {{ $proposta->titulo }}
                         </option>
                     @endforeach
@@ -82,7 +82,7 @@
                     type="number"
                     step="0.01"
                     name="valor_implantacao"
-                    value="{{ old('valor_implantacao') }}"
+                    value="{{ old('valor_implantacao', $propostaBase->valor_implantacao ?? null) }}"
                     placeholder="0.00"
                 >
             </div>
@@ -93,7 +93,7 @@
                     type="number"
                     step="0.01"
                     name="valor_mensal"
-                    value="{{ old('valor_mensal') }}"
+                    value="{{ old('valor_mensal', $propostaBase->valor_recorrente ?? null) }}"
                     placeholder="0.00"
                 >
             </div>

@@ -15,9 +15,11 @@
             Pipeline Comercial
         </span>
 
-        <a href="{{ route('propostas.create') }}" class="btn-primary">
-            + Nova Proposta
-        </a>
+        @if(auth()->user()->hasAnyRole(['comercial']))
+            <a href="{{ route('propostas.create') }}" class="btn-primary">
+                + Nova Proposta
+            </a>
+        @endif
     </div>
 </div>
 

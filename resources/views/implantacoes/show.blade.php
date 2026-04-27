@@ -45,6 +45,34 @@
             <div class="card-value">{{ $implantacao->responsavel ?? '-' }}</div>
             <div class="card-subtitle">Responsável operacional</div>
         </div>
+
+        <div class="card">
+            <div class="card-title">Progresso</div>
+            <div class="card-value">{{ $progresso['percentual'] }}%</div>
+            <div class="card-subtitle">{{ $progresso['concluidas'] }} de {{ $progresso['total'] }} etapas concluídas</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Risco</div>
+            <div class="card-value">{{ $progresso['emRisco'] ? 'Atenção' : 'Controlado' }}</div>
+            <div class="card-subtitle">{{ $progresso['bloqueadas'] }} etapa(s) bloqueada(s)</div>
+        </div>
+    </div>
+
+    <div style="height: 20px;"></div>
+
+    <div class="page-panel">
+        <div class="topbar" style="padding: 0; border: 0; margin-bottom: 16px;">
+            <div>
+                <div class="topbar-kicker">ORION</div>
+                <h2>Progresso operacional</h2>
+                <p>Leitura executiva das etapas concluídas, bloqueios e risco de go-live.</p>
+            </div>
+        </div>
+
+        <div style="height: 10px; background: #27272a; border-radius: 999px; overflow: hidden;">
+            <div style="height: 100%; width: {{ $progresso['percentual'] }}%; background: {{ $progresso['emRisco'] ? '#ef4444' : '#dc2626' }};"></div>
+        </div>
     </div>
 
     <div style="height: 20px;"></div>

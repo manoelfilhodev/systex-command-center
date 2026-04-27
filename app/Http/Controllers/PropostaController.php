@@ -6,12 +6,19 @@ use App\Models\Lead;
 use App\Models\Proposta;
 use App\Models\PropostaItem;
 use App\Models\Servico;
+use App\Services\AuditoriaService;
+use App\Services\PropostaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PropostaController extends Controller
 {
+    public function __construct(
+        private readonly PropostaService $propostaService,
+        private readonly AuditoriaService $auditoriaService
+    ) {}
+
     public function index()
     {
         $propostas = Proposta::with(['lead', 'cliente'])
@@ -54,7 +61,7 @@ class PropostaController extends Controller
             'itens.*.recorrente' => ['nullable'],
         ]);
 
-        DB::transaction(function () use ($data, $request) {
+        $proposta = DB::transaction(function () use ($data, $request) {
             $valorImplantacao = $data['valor_implantacao'] ?? 0;
             $valorRecorrente = $data['valor_recorrente'] ?? 0;
 
@@ -78,10 +85,14 @@ class PropostaController extends Controller
             $proposta->update([
                 'valor_total' => $valorImplantacao + $valorRecorrente + $totalItens,
             ]);
+
+            return $proposta->refresh();
         });
 
+        $this->propostaService->syncLeadStatus($proposta);
+
         return redirect()
-            ->route('propostas.index')
+            ->route('propostas.show', $proposta)
             ->with('success', 'Proposta criada com sucesso.');
     }
 
@@ -125,7 +136,7 @@ class PropostaController extends Controller
             'itens.*.recorrente' => ['nullable'],
         ]);
 
-        DB::transaction(function () use ($data, $request, $proposta) {
+        $proposta = DB::transaction(function () use ($data, $request, $proposta) {
             $valorImplantacao = $data['valor_implantacao'] ?? 0;
             $valorRecorrente = $data['valor_recorrente'] ?? 0;
 
@@ -149,11 +160,29 @@ class PropostaController extends Controller
             $proposta->update([
                 'valor_total' => $valorImplantacao + $valorRecorrente + $totalItens,
             ]);
+
+            return $proposta->refresh();
         });
 
+        $this->propostaService->syncLeadStatus($proposta);
+
         return redirect()
-            ->route('propostas.index')
+            ->route('propostas.show', $proposta)
             ->with('success', 'Proposta atualizada com sucesso.');
+    }
+
+    public function approve(Proposta $proposta)
+    {
+        $proposta->update(['status' => 'aprovada']);
+
+        $this->propostaService->syncLeadStatus($proposta->refresh());
+        $this->auditoriaService->registrar('propostas', 'aprovada', $proposta, $proposta->numero, [
+            'valor_total' => $proposta->valor_total,
+        ]);
+
+        return redirect()
+            ->route('contratos.create', ['proposta_id' => $proposta->id])
+            ->with('success', 'Proposta aprovada. Formalize o contrato para concluir o fechamento.');
     }
 
     public function destroy(Proposta $proposta)
@@ -198,7 +227,7 @@ class PropostaController extends Controller
     private function gerarNumeroProposta(): string
     {
         do {
-            $numero = 'PROP-' . now()->format('Ymd') . '-' . strtoupper(Str::random(5));
+            $numero = 'PROP-'.now()->format('Ymd').'-'.strtoupper(Str::random(5));
         } while (Proposta::where('numero', $numero)->exists());
 
         return $numero;

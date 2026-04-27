@@ -92,6 +92,10 @@ Branding, posicionamento e percepção de valor.
 
 Jurídico, contratos, SLA e proteção operacional.
 
+## 🛰️ TITAN
+
+Operações, implantação, entrega, suporte e Customer Success.
+
 ---
 
 # Stack Oficial
@@ -113,6 +117,26 @@ Tema visual:
 - Vermelho apenas em detalhes
 
 Visual premium SaaS / enterprise / clean / tecnológico.
+
+---
+
+# Estado Atual da Base
+
+A base atual já contempla:
+
+- Login, logout, proteção de rotas e perfis de acesso.
+- Gestão administrativa de usuários e papéis de acesso.
+- Dashboard executivo com indicadores comerciais, financeiros, operacionais e alertas críticos.
+- Leads, CRM, propostas, contratos, clientes, financeiro, MRR, projetos, implantações e suporte.
+- Auditoria de eventos críticos para contratos, propostas, financeiro, implantação e suporte.
+- Diretoria com leitura executiva ampla e módulos operacionais protegidos por perfil.
+- Testes automatizados para fluxo principal, banco, permissões, auditoria e prontidão operacional.
+
+Documentação complementar:
+
+- `standards/` concentra os padrões por agente e disciplina.
+- `docs/production-checklist.md` concentra o checklist de homologação, produção e go-live.
+- `docs/release-readiness.md` concentra o aceite final de entrega e homologação interna.
 
 ---
 
@@ -218,6 +242,14 @@ DB_PASSWORD=******
 php artisan migrate
 ```
 
+## Dados de Demonstração
+
+```bash
+php artisan db:seed
+```
+
+A seed principal cria serviços core e uma massa demo executiva com lead, cliente, proposta, contrato, MRR, financeiro, projeto, implantação, suporte e auditoria.
+
 ## Frontend
 
 ```bash
@@ -228,6 +260,31 @@ npm run dev
 
 ```bash
 php artisan serve
+```
+
+## Validação Técnica
+
+```bash
+php artisan test
+vendor/bin/pint --test
+npm run build
+DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan migrate:fresh --force
+```
+
+## Checklist de Produção
+
+Antes de homologação ou go-live, seguir o arquivo:
+
+```txt
+docs/production-checklist.md
+```
+
+## Aceite de Entrega
+
+Para validar o pacote final do MVP interno:
+
+```txt
+docs/release-readiness.md
 ```
 
 ---
@@ -284,8 +341,31 @@ Nenhuma implementação deve avançar sem:
 - padrão de nomenclatura
 - rastreabilidade
 - possibilidade real de escala
+- evidência mínima de QA
+- validação de segurança para fluxos sensíveis
+- handoff operacional quando houver impacto em cliente
 
 O projeto deve nascer pronto para crescer.
+
+## Checkpoints por Agente
+
+```txt
+ATLAS      → plano, prioridade, riscos e próximo checkpoint
+ATHENA     → regras de negócio e critérios de aceite
+PROMETEU   → arquitetura, limites e decisões técnicas
+GAIA       → modelo de dados, integridade, índices e rollback
+VULCAN     → estrutura, padrões, setup e qualidade estática
+ARES       → controllers, serviços, APIs e validações backend
+APOLLO     → experiência web, estados de tela e responsividade
+HERMES     → contratos futuros para Flutter e integração mobile
+ORION      → testes, evidências e recomendação Go/No-Go
+HADES      → autenticação, autorização e superfície de ataque
+CRONOS     → MRR, receita, margem e indicadores financeiros
+MERCURIUS  → funil, CRM, qualificação e conversão comercial
+AURORA     → marca, narrativa, percepção e comunicação
+THEMIS     → contratos, SLA, LGPD e responsabilidades
+TITAN      → implantação, runbook, suporte e pós-go-live
+```
 
 ---
 

@@ -43,6 +43,16 @@
         </div>
 
         <div class="form-group">
+            <label>Cliente</label>
+            <input type="text" value="{{ $financeiro->cliente->nome_fantasia ?? $financeiro->cliente->razao_social ?? '-' }}" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Contrato</label>
+            <input type="text" value="{{ $financeiro->contrato->numero ?? '-' }}" readonly>
+        </div>
+
+        <div class="form-group">
             <label>Data de Vencimento</label>
             <input type="text" value="{{ \Carbon\Carbon::parse($financeiro->data_vencimento)->format('d/m/Y') }}" readonly>
         </div>

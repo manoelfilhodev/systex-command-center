@@ -15,9 +15,11 @@
             Base Comercial
         </span>
 
-        <a href="{{ route('clientes.create') }}" class="btn-primary">
-            + Novo Cliente
-        </a>
+        @if(auth()->user()->hasAnyRole(['comercial', 'financeiro', 'operacao']))
+            <a href="{{ route('clientes.create') }}" class="btn-primary">
+                + Novo Cliente
+            </a>
+        @endif
     </div>
 </div>
 
@@ -103,7 +105,12 @@
                 @empty
                     <tr>
                         <td colspan="7">
-                            Nenhum cliente cadastrado ainda.
+                            <x-empty-state
+                                title="Nenhum cliente cadastrado"
+                                description="A base de clientes será o centro de contratos, projetos, financeiro e suporte."
+                                :href="auth()->user()->hasAnyRole(['comercial', 'financeiro', 'operacao']) ? route('clientes.create') : null"
+                                action="Cadastrar cliente"
+                            />
                         </td>
                     </tr>
                 @endforelse

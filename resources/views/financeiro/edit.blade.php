@@ -55,6 +55,30 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label>Cliente</label>
+                <select name="cliente_id">
+                    <option value="">Sem cliente vinculado</option>
+                    @foreach($clientes as $cliente)
+                        <option value="{{ $cliente->id }}" @selected(old('cliente_id', $financeiro->cliente_id) == $cliente->id)>
+                            {{ $cliente->nome_fantasia ?? $cliente->razao_social }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Contrato</label>
+                <select name="contrato_id">
+                    <option value="">Sem contrato vinculado</option>
+                    @foreach($contratos as $contrato)
+                        <option value="{{ $contrato->id }}" @selected(old('contrato_id', $financeiro->contrato_id) == $contrato->id)>
+                            {{ $contrato->numero }} - {{ $contrato->cliente->nome_fantasia ?? $contrato->cliente->razao_social ?? 'Cliente' }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="form-group full">
                 <label>Descrição *</label>
                 <input type="text" name="descricao" value="{{ old('descricao', $financeiro->descricao) }}" required>

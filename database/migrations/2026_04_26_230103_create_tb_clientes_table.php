@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('segmento')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado', 2)->nullable();
-            $table->enum('status', ['ativo', 'inativo', 'prospect'])->default('ativo');
+            $table->enum('status', ['ativo', 'inativo', 'prospect', 'suspenso'])->default('ativo');
             $table->text('observacoes')->nullable();
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_clientes');
+        Schema::dropIfExists('_tb_clientes');
     }
 };

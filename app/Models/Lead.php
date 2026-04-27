@@ -29,4 +29,17 @@ class Lead extends Model
     {
         return $this->hasMany(Proposta::class, 'lead_id');
     }
+
+    public function interacoes()
+    {
+        return $this->hasMany(LeadInteracao::class, 'lead_id')
+            ->latest('data_interacao');
+    }
+
+    public function tarefas()
+    {
+        return $this->hasMany(LeadTarefa::class, 'lead_id')
+            ->orderByRaw("case when status = 'pendente' then 0 else 1 end")
+            ->orderBy('data_vencimento');
+    }
 }

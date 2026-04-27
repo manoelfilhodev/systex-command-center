@@ -17,6 +17,11 @@ class Implantacao extends Model
         'observacoes',
     ];
 
+    protected $casts = [
+        'data_inicio' => 'date',
+        'data_go_live' => 'date',
+    ];
+
     public function contrato()
     {
         return $this->belongsTo(Contrato::class, 'contrato_id');

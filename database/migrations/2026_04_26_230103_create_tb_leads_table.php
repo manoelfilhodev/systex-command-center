@@ -25,7 +25,7 @@ return new class extends Migration
                 'proposta_enviada',
                 'negociacao',
                 'convertido',
-                'perdido'
+                'perdido',
             ])->default('novo');
             $table->decimal('valor_estimado', 12, 2)->default(0);
             $table->date('proximo_contato')->nullable();
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tb_leads');
+        Schema::dropIfExists('_tb_leads');
     }
 };

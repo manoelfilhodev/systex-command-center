@@ -10,6 +10,17 @@
     </div>
 
     <div class="topbar-actions">
+        @if($proposta->status !== 'aprovada')
+            <form method="POST" action="{{ route('propostas.approve', $proposta) }}">
+                @csrf
+                @method('PATCH')
+
+                <button type="submit" class="btn-primary">
+                    Aprovar
+                </button>
+            </form>
+        @endif
+
         <a href="{{ route('propostas.edit', $proposta) }}" class="btn-secondary">
             Editar
         </a>

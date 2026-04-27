@@ -25,6 +25,12 @@ class ContratoAditivo extends Model
         'observacoes',
     ];
 
+    protected $casts = [
+        'valor_aditivo' => 'decimal:2',
+        'data_inicio' => 'date',
+        'data_fim' => 'date',
+    ];
+
     public function contrato()
     {
         return $this->belongsTo(Contrato::class, 'contrato_id');
