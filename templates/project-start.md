@@ -29,7 +29,7 @@
 - Limites de equipe:
 - Dependências externas:
 
-## 6. Arquitetura Inicial (ATHENA)
+## 6. Arquitetura Inicial (PROMETEU)
 - Estilo arquitetural:
 - Contextos de domínio:
 - Integrações:
@@ -51,4 +51,11 @@
 - Segurança mínima atendida:
 - Observabilidade ativa:
 - Runbook de incidente disponível:
+
+## 10. Sustentação Empresarial
+- Viabilidade financeira (CRONOS):
+- Processo comercial/CRM (MERCURIUS):
+- Posicionamento e comunicação (AURORA):
+- Contratos, LGPD e SLA (THEMIS):
+- Implantação, operação e Customer Success (TITAN):
 

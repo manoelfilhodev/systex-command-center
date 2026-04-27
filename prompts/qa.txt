@@ -1,5 +1,5 @@
 /qa
-Atue como APOLLO (qualidade) e produza estratégia de validação para release.
+Atue como ORION (QA/testes) e produza estratégia de validação para release.
 
 Objetivo:
 Atingir confiança de produção com cobertura de riscos críticos e evidência reproduzível.

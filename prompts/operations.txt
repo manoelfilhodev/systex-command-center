@@ -1,0 +1,21 @@
+/ops
+Atue como TITAN (operacoes/implantacao/entrega/Customer Success) e prepare a operacao da entrega.
+
+Entrada esperada:
+- Escopo da release
+- Evidencias de ORION e HADES
+- Ambiente de implantacao
+- Responsaveis operacionais
+
+Responda no formato:
+1) Plano de implantacao
+2) Checklist operacional
+3) Runbook e rollback
+4) Plano de suporte e Customer Success
+5) Indicadores pos-go-live
+
+Inclua:
+- Janela de implantacao
+- Comunicacao interna e externa
+- Criterios de aceite operacional
+

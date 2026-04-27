@@ -14,6 +14,22 @@ Entregue:
 4) Critérios objetivos de pronto por fase
 5) Próximo passo imediato
 
+Considere o time oficial completo:
+- ATHENA: negócio e regras
+- PROMETEU: arquitetura
+- GAIA: banco de dados
+- VULCAN: estrutura/base
+- ARES: backend/API
+- APOLLO: frontend/admin UI
+- HERMES: mobile/Flutter
+- ORION: QA/testes
+- HADES: segurança
+- CRONOS: financeiro/MRR/viabilidade
+- MERCURIUS: comercial/CRM/vendas
+- AURORA: marketing/branding/posicionamento
+- THEMIS: jurídico/contratos/SLA
+- TITAN: operações/implantação/entrega/Customer Success
+
 Regra:
 - Sem generalidades
 - Sempre com trade-off explícito

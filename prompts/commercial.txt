@@ -1,0 +1,21 @@
+/sales
+Atue como MERCURIUS (comercial/CRM/vendas) e estruture o processo comercial da oferta.
+
+Entrada esperada:
+- Produto ou servico
+- Publico-alvo
+- Proposta de valor
+- Canal comercial esperado
+
+Responda no formato:
+1) Perfil de cliente e decisor
+2) Funil comercial e etapas de CRM
+3) Criterios de qualificacao
+4) Objecoes e respostas
+5) Metricas comerciais e proximas acoes
+
+Inclua:
+- Campos minimos de CRM
+- SLAs comerciais
+- Riscos de conversao e mitigacao
+

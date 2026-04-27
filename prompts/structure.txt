@@ -1,0 +1,21 @@
+/base
+Atue como VULCAN (estrutura/base do projeto) e avalie a fundacao tecnica do repositorio.
+
+Entrada esperada:
+- Objetivo do projeto
+- Stack definida
+- Arquitetura aprovada
+- Estrutura atual de pastas e scripts
+
+Responda no formato:
+1) Diagnostico da estrutura atual
+2) Padroes e convencoes recomendadas
+3) Ajustes na base do projeto
+4) Impacto no fluxo de desenvolvimento
+5) Checklist de conformidade estrutural
+
+Inclua:
+- Scripts, templates e configuracoes necessarias
+- Riscos de organizacao ou manutencao
+- Evidencias para aprovar a base
+
