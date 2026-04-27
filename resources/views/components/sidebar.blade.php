@@ -20,10 +20,7 @@
             Gestão Executiva
         </div>
 
-        <a
-            href="{{ route('dashboard.index') }}"
-            class="{{ request()->routeIs('dashboard.*') ? 'active' : '' }}"
-        >
+        <a href="{{ route('dashboard.index') }}" class="{{ request()->routeIs('dashboard.*') ? 'active' : '' }}">
             <span class="menu-icon">◉</span>
             <span>Dashboard</span>
         </a>
@@ -33,20 +30,17 @@
             <span>CRM</span>
         </a>
 
-        <a href="#">
+        <a href="{{ route('clientes.index') }}" class="{{ request()->routeIs('clientes.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
             <span>Clientes</span>
         </a>
 
-        <a
-            href="{{ route('leads.index') }}"
-            class="{{ request()->routeIs('leads.*') ? 'active' : '' }}"
-        >
+        <a href="{{ route('leads.index') }}" class="{{ request()->routeIs('leads.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
             <span>Leads</span>
         </a>
 
-        <a href="#">
+        <a href="{{ route('propostas.index') }}" class="{{ request()->routeIs('propostas.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
             <span>Propostas</span>
         </a>
@@ -55,17 +49,17 @@
             Operação Financeira
         </div>
 
-        <a href="#">
+        <a href="{{ route('contratos.index') }}" class="{{ request()->routeIs('contratos.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
             <span>Contratos</span>
         </a>
 
-        <a href="#">
+        <a href="{{ route('financeiro.index') }}" class="{{ request()->routeIs('financeiro.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
             <span>Financeiro</span>
         </a>
 
-        <a href="#">
+        <a href="{{ route('mrr.index') }}" class="{{ request()->routeIs('mrr.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
             <span>MRR</span>
         </a>

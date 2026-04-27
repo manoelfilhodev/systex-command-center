@@ -1,54 +1,135 @@
 @extends('layouts.systex')
 
 @section('content')
-    <x-topbar
-        title="Leads"
-        subtitle="Gestão inicial do funil comercial da SYSTEX"
-    />
 
-    <div style="margin-bottom: 24px;">
-        <a href="{{ route('leads.create') }}"
-           style="background:#ff2a2a; color:white; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:600;">
-            Novo Lead
-        </a>
+<div class="topbar">
+    <div>
+        <div class="topbar-kicker">MERCURIUS</div>
+        <h1>Leads</h1>
+        <p>Gestão inicial do funil comercial da SYSTEX.</p>
     </div>
 
-    <div class="card">
-        <table style="width:100%; border-collapse:collapse;">
+    <div class="topbar-actions">
+        <span class="system-pill">
+            <span class="status-dot"></span>
+            Funil Comercial
+        </span>
+
+        <a href="{{ route('leads.create') }}" class="btn-primary">
+            + Novo Lead
+        </a>
+    </div>
+</div>
+
+@if(session('success'))
+    <div class="alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+<div class="page-panel">
+
+    <div class="table-wrap">
+        <table>
             <thead>
-                <tr style="color:#a1a1aa; text-align:left; font-size:13px;">
-                    <th style="padding:12px;">Nome</th>
-                    <th style="padding:12px;">Empresa</th>
-                    <th style="padding:12px;">Telefone</th>
-                    <th style="padding:12px;">Status</th>
-                    <th style="padding:12px;">Valor Estimado</th>
-                    <th style="padding:12px;">Próximo Contato</th>
+                <tr>
+                    <th>Nome</th>
+                    <th>Empresa</th>
+                    <th>Telefone</th>
+                    <th>Status</th>
+                    <th>Valor Estimado</th>
+                    <th>Próximo Contato</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
+
             <tbody>
-                @forelse ($leads as $lead)
-                    <tr style="border-top:1px solid rgba(255,255,255,0.06);">
-                        <td style="padding:14px;">{{ $lead->nome }}</td>
-                        <td style="padding:14px;">{{ $lead->empresa ?? '-' }}</td>
-                        <td style="padding:14px;">{{ $lead->telefone ?? '-' }}</td>
-                        <td style="padding:14px;">{{ str_replace('_', ' ', ucfirst($lead->status)) }}</td>
-                        <td style="padding:14px;">R$ {{ number_format($lead->valor_estimado, 2, ',', '.') }}</td>
-                        <td style="padding:14px;">
-                            {{ $lead->proximo_contato ? $lead->proximo_contato->format('d/m/Y') : '-' }}
+                @forelse($leads as $lead)
+                    <tr>
+                        <td>
+                            <strong>{{ $lead->nome }}</strong>
+                        </td>
+
+                        <td>{{ $lead->empresa ?? '-' }}</td>
+
+                        <td>{{ $lead->telefone ?? '-' }}</td>
+
+                        <td>
+                            <span class="badge
+                                @if($lead->status === 'novo') badge-success
+                                @elseif(in_array($lead->status, ['diagnostico', 'negociacao'])) badge-warning
+                                @elseif(in_array($lead->status, ['perdido', 'cancelado'])) badge-danger
+                                @endif
+                            ">
+                                {{ ucfirst($lead->status) }}
+                            </span>
+                        </td>
+
+                        <td>
+                            R$ {{ number_format($lead->valor_estimado ?? 0, 2, ',', '.') }}
+                        </td>
+
+                        <td>
+                            {{ $lead->proximo_contato ? \Carbon\Carbon::parse($lead->proximo_contato)->format('d/m/Y') : '-' }}
+                        </td>
+
+                        <td>
+                            
+                            <div class="form-actions">
+
+    @if(Route::has('leads.show'))
+        <a href="{{ route('leads.show', $lead) }}" class="btn-secondary">
+            Ver
+        </a>
+    @endif
+
+    <a
+        href="{{ route('propostas.create', ['lead_id' => $lead->id]) }}"
+        class="btn-primary"
+        style="padding: 10px 14px; font-size: 13px;"
+    >
+        Converter
+    </a>
+
+    @if(Route::has('leads.edit'))
+        <a href="{{ route('leads.edit', $lead) }}" class="btn-secondary">
+            Editar
+        </a>
+    @endif
+
+    @if(Route::has('leads.destroy'))
+        <form method="POST"
+              action="{{ route('leads.destroy', $lead) }}"
+              onsubmit="return confirm('Deseja remover este lead?')">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" class="btn-danger">
+                Excluir
+            </button>
+        </form>
+    @endif
+
+</div>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" style="padding:24px; color:#a1a1aa;">
+                        <td colspan="7">
                             Nenhum lead cadastrado ainda.
                         </td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
+    </div>
 
-        <div style="margin-top:20px;">
+    @if(method_exists($leads, 'links'))
+        <div style="margin-top: 20px;">
             {{ $leads->links() }}
         </div>
-    </div>
+    @endif
+
+</div>
+
 @endsection
