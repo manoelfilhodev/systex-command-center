@@ -73,9 +73,10 @@
             <span>Projetos</span>
         </a>
 
-        <a href="#">
+        <a href="{{ route('implantacoes.index') }}"
+            class="{{ request()->routeIs('implantacoes.*') ? 'active' : '' }}">
             <span class="menu-icon">◎</span>
-            <span>Implantação</span>
+            <span>Implantações</span>
         </a>
 
         <a href="#">

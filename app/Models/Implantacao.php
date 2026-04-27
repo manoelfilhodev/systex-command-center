@@ -9,7 +9,7 @@ class Implantacao extends Model
     protected $table = '_tb_implantacoes';
 
     protected $fillable = [
-        'projeto_id',
+        'contrato_id',
         'status',
         'data_inicio',
         'data_go_live',
@@ -17,18 +17,19 @@ class Implantacao extends Model
         'observacoes',
     ];
 
-    protected $casts = [
-        'data_inicio' => 'date',
-        'data_go_live' => 'date',
-    ];
-
-    public function projeto()
+    public function contrato()
     {
-        return $this->belongsTo(Projeto::class, 'projeto_id');
+        return $this->belongsTo(Contrato::class, 'contrato_id');
     }
 
     public function etapas()
     {
-        return $this->hasMany(ImplantacaoEtapa::class, 'implantacao_id');
+        return $this->hasMany(ImplantacaoEtapa::class, 'implantacao_id')
+            ->orderBy('ordem');
+    }
+
+    public function aditivos()
+    {
+        return $this->hasMany(ContratoAditivo::class, 'implantacao_id');
     }
 }
