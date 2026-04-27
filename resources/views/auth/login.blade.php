@@ -2,49 +2,95 @@
 
 @section('content')
 
-<div style="min-height: calc(100vh - 96px); display: grid; place-items: center;">
-    <div class="page-panel" style="width: min(100%, 460px);">
-        <div style="margin-bottom: 26px;">
-            <div class="topbar-kicker">HADES</div>
-            <h1 style="font-size: 28px; margin-bottom: 8px;">Systex Command Center</h1>
-            <p style="color: var(--muted); line-height: 1.5;">
-                Acesso restrito ao painel executivo da SYSTEX.
-            </p>
+<section class="auth-page">
+    <div class="auth-hero">
+        <div class="auth-brand-mark">
+            <span></span>
+            SYSTEX
         </div>
 
-        @if($errors->any())
-            <div class="alert-error">
-                {{ $errors->first() }}
-            </div>
-        @endif
+        <div class="auth-hero-content">
+            <div class="auth-hero-kicker">Command Center</div>
+            <h1>Controle executivo para operação real.</h1>
+            <p>
+                Ambiente central de gestão comercial, financeira, operacional e estratégica da SYSTEX Sistemas Inteligentes.
+            </p>
 
-        <form method="POST" action="{{ route('login.store') }}">
-            @csrf
-
-            <div class="form-grid" style="grid-template-columns: 1fr;">
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required autofocus>
+            <div class="auth-proof-grid">
+                <div class="auth-proof">
+                    <strong>CRM</strong>
+                    <span>Leads, propostas, contratos e pipeline comercial.</span>
                 </div>
 
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" name="password" required>
+                <div class="auth-proof">
+                    <strong>MRR</strong>
+                    <span>Receita recorrente, financeiro e visão executiva.</span>
                 </div>
 
-                <label style="display: inline-flex; align-items: center; gap: 10px; color: var(--muted);">
-                    <input type="checkbox" name="remember" value="1" style="width: auto;">
-                    Manter sessão ativa
-                </label>
+                <div class="auth-proof">
+                    <strong>SLA</strong>
+                    <span>Implantação, suporte e governança operacional.</span>
+                </div>
             </div>
+        </div>
 
-            <div class="form-actions" style="margin-top: 24px;">
-                <button type="submit" class="btn-primary" style="width: 100%;">
-                    Entrar
-                </button>
-            </div>
-        </form>
+        <div class="auth-footer-note">
+            Acesso restrito a usuários autorizados. Todas as ações sensíveis devem preservar rastreabilidade, segurança e responsabilidade operacional.
+        </div>
     </div>
-</div>
+
+    <div class="auth-panel-wrap">
+        <div class="auth-panel">
+            <div class="auth-panel-header">
+                <div class="topbar-kicker">HADES</div>
+                <h2>Acessar painel</h2>
+                <p>Entre com seu usuário SYSTEX para continuar.</p>
+            </div>
+
+            @if($errors->any())
+                <div class="alert-error">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('login.store') }}">
+                @csrf
+
+                <div class="form-grid auth-form-grid">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input class="auth-input" type="email" name="email" value="{{ old('email') }}" autocomplete="email" required autofocus>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input class="auth-input" type="password" name="password" autocomplete="current-password" required>
+                    </div>
+
+                    <label class="auth-remember">
+                        <input type="checkbox" name="remember" value="1">
+                        Manter sessão ativa
+                    </label>
+                </div>
+
+                <div class="form-actions" style="margin-top: clamp(20px, 2.8vh, 24px);">
+                    <button type="submit" class="btn-primary auth-submit">
+                        Entrar no Command Center
+                    </button>
+                </div>
+
+                <div class="auth-security">
+                    <span class="menu-icon">●</span>
+                    <span>Autenticação protegida por sessão Laravel, perfis de acesso e validação de permissões por módulo.</span>
+                </div>
+            </form>
+        </div>
+
+        <footer class="auth-panel-footer">
+            <strong>SYSTEX Sistemas Inteligentes</strong><br>
+            Tecnologia aplicada à operação real.
+        </footer>
+    </div>
+</section>
 
 @endsection
